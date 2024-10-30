@@ -1,0 +1,55 @@
+---
+layout: layouts/base.njk
+---
+<article class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <img 
+        src="{{ image }}" 
+        alt="{{ title }}" 
+        class="w-full rounded-lg shadow-lg"
+      >
+    </div>
+    
+    <div>
+      <h1 class="text-3xl font-bold mb-4">{{ title }}</h1>
+      
+      <div class="flex items-center space-x-4 mb-4">
+        <span class="text-2xl font-bold">
+          ${{ price }}
+        </span>
+        {% if salePrice %}
+        <span class="text-2xl text-red-600 font-bold">
+          ${{ salePrice }}
+        </span>
+        {% endif %}
+      </div>
+
+      <div class="prose max-w-none mb-6">
+        {{ description }}
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Features</h2>
+        <ul class="list-disc list-inside space-y-2">
+          {% for feature in features %}
+          <li>{{ feature }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <span class="{% if inStock %}text-green-600{% else %}text-red-600{% endif %}">
+          {{ "In Stock" if inStock else "Out of Stock" }}
+        </span>
+        <span class="text-gray-600">
+          Category: {{ category }}
+        </span>
+      </div>
+
+      <div class="prose max-w-none mt-8">
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+</article>

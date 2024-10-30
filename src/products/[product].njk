@@ -1,0 +1,52 @@
+---
+pagination:
+  data: products.featured
+  size: 1
+  alias: product
+permalink: "products/{{ product.slug | slug }}/"
+---
+<div class="container mx-auto px-4 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div>
+      {% if product.image %}
+      <img 
+        src="{{ product.image }}" 
+        alt="{{ product.title }}"
+        class="w-full rounded-lg shadow-lg"
+      >
+      {% endif %}
+    </div>
+    
+    <div>
+      <h1 class="text-3xl font-bold mb-4">{{ product.title }}</h1>
+      
+      <div class="text-2xl font-bold text-blue-600 mb-6">
+        {{ product.price | formatPrice }}
+      </div>
+      
+      <div class="prose max-w-none mb-6">
+        {{ product.description }}
+      </div>
+      
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold">Category:</span>
+          <a href="/categories/{{ product.category | slug }}/" class="text-blue-600 hover:underline">
+            {{ product.category }}
+          </a>
+        </div>
+        
+        {% if product.features %}
+        <div>
+          <h2 class="font-semibold mb-2">Features:</h2>
+          <ul class="list-disc list-inside space-y-1">
+            {% for feature in product.features %}
+            <li>{{ feature }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

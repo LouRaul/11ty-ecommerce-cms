@@ -1,0 +1,74 @@
+backend:
+  name: github
+  repo: yourusername/eleventy-marketing-starter
+  branch: main
+  base_url: https://api.netlify.com
+
+# Publish mode can be editorial (needs approval) or simple
+publish_mode: simple
+
+# Media files will be stored in the repo under src/assets/images
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "src/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float" }
+      - { label: "Sale Price", name: "salePrice", widget: "number", value_type: "float", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Features", name: "features", widget: "list" }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "select",
+          options: ["Electronics", "Clothing", "Books", "Home"]
+        }
+      - { label: "In Stock", name: "inStock", widget: "boolean", default: true }
+      - { label: "Details", name: "body", widget: "markdown" }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        summary: "{{fields.image}}"
+        field: { label: "Image", name: "image", widget: "image" }
+
+  - name: "categories"
+    label: "Categories"
+    folder: "src/categories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+
+  - name: "settings"
+    label: "Settings"
+    files:
+      - name: "site"
+        label: "Site Settings"
+        file: "src/_data/site.js"
+        format: "javascript"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "URL", name: "url", widget: "string" }
+          - label: "Author"
+            name: "author"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }

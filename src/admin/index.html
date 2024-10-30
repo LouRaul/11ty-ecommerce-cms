@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager</title>
+    <!-- Include Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Include the Decap CMS customization -->
+    <script>
+      // Custom preview styles
+      CMS.registerPreviewStyle("/assets/css/style.css");
+      
+      // Custom preview template for products
+      const ProductPreview = createClass({
+        render: function() {
+          const entry = this.props.entry;
+          const image = entry.getIn(['data', 'image']);
+          
+          return h('div', {},
+            h('h1', {}, entry.getIn(['data', 'title'])),
+            h('img', { src: image }),
+            h('div', { className: 'price' }, 
+              h('span', {}, '$' + entry.getIn(['data', 'price']))
+            ),
+            h('div', {}, this.props.widgetFor('body'))
+          );
+        }
+      });
+      
+      CMS.registerPreviewTemplate('products', ProductPreview);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
