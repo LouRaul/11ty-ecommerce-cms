@@ -4,47 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
+    <!-- Include React -->
+    <script src="https://unpkg.com/react@^16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@^16/umd/react-dom.production.min.js"></script>
+    <!-- Include the Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <!-- Include Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-    <!-- Add this: Required for Netlify Identity -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    
-    <!-- Move your CMS customization after body loads -->
-    <script>
-      // Initialize Netlify Identity
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-
-      // Custom preview styles
-      CMS.registerPreviewStyle("/assets/css/style.css");
-      
-      // Custom preview template for products
-      const ProductPreview = createClass({
-        render: function() {
-          const entry = this.props.entry;
-          const image = entry.getIn(['data', 'image']);
-          
-          return h('div', {},
-            h('h1', {}, entry.getIn(['data', 'title'])),
-            h('img', { src: image }),
-            h('div', { className: 'price' }, 
-              h('span', {}, '$' + entry.getIn(['data', 'price']))
-            ),
-            h('div', {}, this.props.widgetFor('body'))
-          );
-        }
-      });
-      
-      CMS.registerPreviewTemplate('products', ProductPreview);
-    </script>
+    <!-- Your CMS will be mounted here -->
   </body>
 </html>
