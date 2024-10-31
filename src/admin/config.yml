@@ -1,15 +1,13 @@
 backend:
-  name: github
-  repo: yourusername/eleventy-marketing-starter
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
 
 # Publish mode can be editorial (needs approval) or simple
 publish_mode: simple
 
 # Media files will be stored in the repo under src/assets/images
-media_folder: "src/assets/images"
-public_folder: "/assets/images"
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "products"
@@ -19,24 +17,9 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Price", name: "price", widget: "number", value_type: "float" }
-      - { label: "Sale Price", name: "salePrice", widget: "number", value_type: "float", required: false }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Features", name: "features", widget: "list" }
-      - {
-          label: "Category",
-          name: "category",
-          widget: "select",
-          options: ["Electronics", "Clothing", "Books", "Home"]
-        }
-      - { label: "In Stock", name: "inStock", widget: "boolean", default: true }
-      - { label: "Details", name: "body", widget: "markdown" }
-      - label: "Gallery"
-        name: "gallery"
-        widget: "list"
-        summary: "{{fields.image}}"
-        field: { label: "Image", name: "image", widget: "image" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description", name: "body", widget: "markdown" }
 
   - name: "categories"
     label: "Categories"
