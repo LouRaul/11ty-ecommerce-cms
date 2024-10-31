@@ -113,22 +113,19 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add(".git/**");
   eleventyConfig.ignores.add("dist/**");
 
+  // Copy the `src/assets` directory to `_site/assets`
+  eleventyConfig.addPassthroughCopy("src/assets");
+
   // Base Config
   return {
     dir: {
       input: "src",
       output: "_site",
       includes: "_includes",
-      data: "_data"
+      layouts: "_includes/layouts"
     },
-    templateFormats: ["md", "njk", "html"],
-    markdownTemplateEngine: "njk",
+    templateFormats: ["njk", "md", "html"],
     htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
-
-    // Server options
-    server: {
-      port: 4000
-    }
+    markdownTemplateEngine: "njk"
   };
 };

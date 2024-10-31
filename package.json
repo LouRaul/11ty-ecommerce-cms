@@ -2,14 +2,15 @@
  "name": "eleventy-marketing-starter",
   "version": "1.0.0",
   "scripts": {
+    "start": "npm run dev",
     "dev": "eleventy --serve & vite",
     "dev:11ty": "eleventy --serve --quiet",
     "dev:vite": "vite",
-    "build": "npx @11ty/eleventy && vite build",
+    "build": "eleventy && vite build",
     "build:11ty": "eleventy",
     "build:vite": "vite build",
     "clean": "rimraf _site",
-    "preview": "vite preview --port 5000"
+    "preview": "vite preview"
   },
   "dependencies": {
     "alpinejs": "^3.13.3",
