@@ -6,8 +6,8 @@ backend:
 publish_mode: editorial_workflow
 
 # Media files will be stored in the repo under src/assets/images
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+media_folder: "public/images"
+public_folder: "/images"
 
 collections:
   - name: "products"

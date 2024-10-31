@@ -4,15 +4,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
-    <!-- Include React -->
-    <script src="https://unpkg.com/react@^16/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@^16/umd/react-dom.production.min.js"></script>
-    <!-- Include the Netlify Identity Widget -->
+    
+    <!-- Important: Load Netlify Identity Widget first -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <!-- Include Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <!-- Then load Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.12/dist/decap-cms.js"></script>
   </head>
   <body>
-    <!-- Your CMS will be mounted here -->
+    <script>
+      // Debug: Log when CMS is ready
+      if (window.CMS) {
+        console.log("CMS object is available");
+        window.CMS.registerPreviewStyle("/styles.css");
+      } else {
+        console.log("CMS object is not available");
+      }
+
+      // Initialize Netlify Identity
+      if (window.netlifyIdentity) {
+        netlifyIdentity.on("init", user => {
+          console.log("Netlify Identity initialized", user ? "with user" : "without user");
+        });
+
+        netlifyIdentity.on("login", () => {
+          console.log("Logged in successfully");
+        });
+
+        netlifyIdentity.on("error", err => {
+          console.error("Netlify Identity error:", err);
+        });
+      }
+    </script>
   </body>
 </html>
