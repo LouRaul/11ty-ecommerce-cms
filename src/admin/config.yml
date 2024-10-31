@@ -12,24 +12,36 @@ public_folder: "/images"
 collections:
   - name: "products"
     label: "Products"
-    folder: "src/products"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "number", value_type: "float" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Category", name: "category", widget: "string" }
-      - { label: "Description", name: "body", widget: "markdown" }
+    files:
+      - name: "products"
+        label: "Products List"
+        file: "src/_data/products.js"
+        format: "javascript"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Price", name: "price", widget: "number"}
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
 
   - name: "categories"
     label: "Categories"
-    folder: "src/categories"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+    files:
+      - name: "categories"
+        label: "Categories List"
+        file: "src/_data/categories.js"
+        format: "javascript"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
 
   - name: "settings"
     label: "Settings"
