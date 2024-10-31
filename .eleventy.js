@@ -102,6 +102,17 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/assets/css/");
   eleventyConfig.addWatchTarget("./src/assets/js/");
 
+  // Enable per-build caching
+  eleventyConfig.setServerOptions({
+    showAllHosts: true,
+    cache: true
+  });
+
+  // Reduce processing by ignoring certain directories
+  eleventyConfig.ignores.add("node_modules/**");
+  eleventyConfig.ignores.add(".git/**");
+  eleventyConfig.ignores.add("dist/**");
+
   // Base Config
   return {
     dir: {
