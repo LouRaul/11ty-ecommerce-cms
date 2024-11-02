@@ -3,11 +3,30 @@ layout: base.njk
 title: Home
 ---
 
-{% include "partials/navigation.njk" %}
-{% include "partials/hero.njk" %}
-{% include "partials/features.njk" %}
-{% include "partials/featured-products.njk" %}
-{% include "partials/shop-by-category.njk" %}
-{% include "partials/newsletter.njk" %}
-{% include "partials/payments.njk" %}
-{% include "partials/footer.njk" %}
+<main>
+  <div class="bg-yellow-200 p-8 m-4 text-center">
+    <h2>DIRECT TEST IN INDEX</h2>
+    <p>If you can see this, the index page is rendering properly</p>
+  </div>
+
+  {% include "partials/navigation.njk" %}
+  {% include "partials/hero.njk" %}
+  {% include "partials/features.njk" %}
+  
+  <div class="bg-red-200 p-8 m-4 text-center">
+    <h2>FEATURED PRODUCTS TEST</h2>
+    <p>If you can see this, we can render content here</p>
+  </div>
+  
+  {% include "partials/featured-products.njk" %}
+  
+  <div class="bg-blue-200 p-8 m-4 text-center">
+    <h2>CATEGORIES TEST</h2>
+    <p>If you can see this, we can render content here too</p>
+  </div>
+  
+  {% include "partials/shop-by-category.njk" %}
+  {% include "partials/newsletter.njk" %}
+  {% include "partials/payments.njk" %}
+  {% include "partials/footer.njk" %}
+</main>
